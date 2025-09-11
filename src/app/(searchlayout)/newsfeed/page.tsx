@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import PostCard from "../../../components/PostCard";
-import { PostCardProps } from "@/components/PostCard/PostCard.types";
+import { PostCardProps } from "@/type/PostCard.types";
 import { useAppDispatch, useAppSelector } from "@/reduxStore/store";
 import { fetchPosts } from "@/reduxStore/postSlice";
 import RightPanel from "@/components/RightPanel";

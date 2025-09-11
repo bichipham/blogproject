@@ -29,8 +29,8 @@ export const login = createAsyncThunk(
       Cookies.set("refreshToken", refreshToken);
       console.log("Login response data:", rest);
       return { rest, accessToken, refreshToken };
-    } catch (err: any) {
-      return rejectWithValue(err.response?.data?.message || "Login failed");
+    } catch (err: unknown) {
+      return rejectWithValue(err?.response?.data?.message || "Login failed");
     }
   }
 );
@@ -54,7 +54,7 @@ const authSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(login.fulfilled, (state, action: PayloadAction<any>) => {
+      .addCase(login.fulfilled, (state, action: PayloadAction<unknown>) => {
         state.loading = false;
         state.user = action.payload.user;
         state.accessToken = action.payload.accessToken;

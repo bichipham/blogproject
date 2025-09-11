@@ -28,7 +28,7 @@ const LoginPage = () => {
         className="flex flex-col gap-3 w-120 bg-white p-6 rounded-2xl shadow-md"
       >
         <h2 className="text-center text-2xl font-bold mb-4 ">
-          Login to Beincom's Blog
+          {`Login to Beincom's Blog`}
         </h2>
         <label className="text-lg font-medium">Email:</label>
         <input

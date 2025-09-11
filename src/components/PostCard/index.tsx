@@ -1,6 +1,6 @@
 // components/PostCard.tsx
 import { MessageCircle, Eye } from "lucide-react";
-import { PostCardProps } from "./PostCard.types";
+import { PostCardProps } from "../../type/PostCard.types";
 import Image from "next/image";
 
 export default function PostCard({
