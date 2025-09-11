@@ -30,7 +30,7 @@ export const login = createAsyncThunk(
       console.log("Login response data:", rest);
       return { rest, accessToken, refreshToken };
     } catch (err: unknown) {
-      return rejectWithValue(err?.response?.data?.message || "Login failed");
+      return rejectWithValue(err || "Login failed");
     }
   }
 );
@@ -54,9 +54,9 @@ const authSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(login.fulfilled, (state, action: PayloadAction<unknown>) => {
+      .addCase(login.fulfilled, (state, action: PayloadAction<{ rest: { id: string; email: string }, accessToken: string, refreshToken: string }>) => {
         state.loading = false;
-        state.user = action.payload.user;
+        state.user = action.payload.rest;
         state.accessToken = action.payload.accessToken;
         state.refreshToken = action.payload.refreshToken;
       })

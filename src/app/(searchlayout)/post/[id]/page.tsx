@@ -1,14 +1,8 @@
-
 import { MessageCircle } from "lucide-react";
 import Image from "next/image";
 import { map } from "lodash-es";
-import {
-  Comment,
-  ListComment,
-  PostCardProps,
-} from "@/type/PostCard.types";
+import { Comment, ListComment, PostCardProps } from "@/type/PostCard.types";
 import UserAvatar from "@/components/UserAvatar";
-import { PageTypeProps } from "@/type/Page.types";
 
 // Fetch dữ liệu
 async function getPost(id: string): Promise<PostCardProps> {
@@ -27,22 +21,16 @@ async function getComments(id: string): Promise<ListComment> {
   return res.json();
 }
 
-interface DetailPageProps {
-  params: {
-    id: string; // comes from the URL segment [id]
-  };
-  searchParams?: Record<string, string | string[] | undefined>;
-}
-
-
-async function PostDetailPage({
+export default async function Page({
   params,
-} : PageTypeProps) {
-  const resolvedParams = await params; // Await the params object
-  const postId = resolvedParams?.id;
-  const post = (await getPost(postId)) || [];
-  const listComments = (await getComments(postId)) || [];
-  const { id, title = "", body = "", tags, user, views = "" } = post || {};
+}: {
+  params: Promise<{ id: string }>
+}) {
+
+  const { id } = await params
+  const post = (await getPost(id)) || [];
+  const listComments = (await getComments(id)) || [];
+  const { title = "", body = "", tags, user, views = "" } = post || {};
 
   return (
     <div className="max-w-3xl mx-auto p-6 space-y-6">
@@ -107,4 +95,3 @@ async function PostDetailPage({
   );
 }
 
-export default PostDetailPage;
