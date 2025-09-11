@@ -8,7 +8,7 @@ import {
   ListComment,
   PostCardProps,
 } from "@/components/PostCard/PostCard.types";
-import UserAvatar from "@/components/PostCard/UserAvatar/page";
+import UserAvatar from "@/components/UserAvatar";
 
 // Fetch dữ liệu
 async function getPost(id: string): Promise<PostCardProps> {

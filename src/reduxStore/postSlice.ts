@@ -1,17 +1,30 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
+import axiosClient from "@/utils/axiosClient";
 
-export const fetchPosts = createAsyncThunk("posts/fetch", async () => {
-  const res = await fetch("https://jsonplaceholder.typicode.com/posts")
-  return res.json()
+export const fetchPosts = createAsyncThunk("posts", async () => {
+  const res = await axiosClient.get("/posts");
+ return res.data;
 })
 
+type PostPayload = {
+  posts: [],
+  total: number,
+  skip: number,
+  limit: number,
+}
+
 type PostState = {
-  list: any[]
+  postsPayload: PostPayload,
   loading: boolean
 }
 
 const initialState: PostState = {
-  list: [],
+  postsPayload: {
+    posts: [],
+    total: 0,
+    skip: 0,
+    limit: 0,
+  },
   loading: false,
 }
 
@@ -25,7 +38,7 @@ const postSlice = createSlice({
         state.loading = true
       })
       .addCase(fetchPosts.fulfilled, (state, action) => {
-        state.list = action.payload
+        state.postsPayload = action.payload
         state.loading = false
       })
   },
