@@ -2,6 +2,7 @@
 import { MessageCircle, Eye } from "lucide-react";
 import { PostCardProps } from "../../type/PostCard.types";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function PostCard({
   id,
@@ -15,13 +16,13 @@ export default function PostCard({
   return (
     <div className="bg-white rounded-xl shadow hover:shadow-md overflow-hidden transition">
       <div className="p-4 space-y-3">
-        {/* Title */}
-        <h2 className="text-2xl font-bold hover:text-blue-600 cursor-pointer">
-          {title}
-        </h2>
-        {/* Body */}
+        <Link href={`/post/${id}`}>
+          {" "}
+          <h2 className="text-2xl font-bold hover:text-blue-600 cursor-pointer">
+            {title}
+          </h2>
+        </Link>
         <p className="text-gray-600 text-xl line-clamp-3">{body}</p>
-        {/* Cover image */}
         <Image
           src={`https://picsum.photos/id/${id}/640/640`}
           className="w-full object-cover"

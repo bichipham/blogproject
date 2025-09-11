@@ -1,6 +1,5 @@
 "use client";
-
-import { useEffect, useMemo, useState } from "react";
+import { useEffect } from "react";
 import PostCard from "../../../components/PostCard";
 import { PostCardProps } from "@/type/PostCard.types";
 import { useAppDispatch, useAppSelector } from "@/reduxStore/store";
