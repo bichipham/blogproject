@@ -22,11 +22,10 @@ export default function NewsFeedPage() {
   }, []);
 
   return (
-    <div className="pt-10 container mx-auto grid grid-cols-12 gap-4 px-4">
+     <div className="pt-10 container mx-auto grid grid-cols-12 gap-4 px-4">
       <LeftPannel />
       {/* Center column (wider feed) */}
-      <main className="bg-white rounded-xl shadow p-4 md:col-span-2 lg:col-span-6">
-        <h2 className="font-semibold mb-2">Newsfeed</h2>
+       <main className="col-span-12 lg:col-span-6 space-y-4">
         <div className="space-y-4">
           {feedposts?.map((post: PostCardProps) => (
             <PostCard key={post?.id} {...post} />
