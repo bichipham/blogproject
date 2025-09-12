@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { User, LogOut, Route } from "lucide-react";
+import { User, LogOut } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "@/reduxStore/store";
 import { useRouter } from "next/navigation";
 
@@ -10,8 +10,7 @@ export default function UserMenu() {
   const menuRef = useRef<HTMLDivElement>(null);
   const dispatch = useAppDispatch();
   const router = useRouter();
-  const user = useAppSelector((state) => state?.auth?.user) || {};
-  console.log("username", user);
+  const user = useAppSelector((state) => state?.auth?.user) || {username: ''};
 
   // Đóng menu khi click ra ngoài
   useEffect(() => {
@@ -37,12 +36,12 @@ export default function UserMenu() {
   return (
     <div ref={menuRef} className="relative inline-block">
       {/* Avatar button */}
-      <button
+      <div
         onClick={() => setOpen(!open)}
         className="flex items-center justify-cente  gap-2 rounded-full bg-gray-200 p-2 hover:bg-gray-300"
       >
         <User className="w-6 h-6 text-gray-600" />
-      </button>
+      </div>
 
       {/* Dropdown */}
       {open && (

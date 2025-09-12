@@ -9,7 +9,6 @@ export default function PostCard({
   title,
   body,
   tags,
-  user,
   comments,
   views,
 }: PostCardProps) {

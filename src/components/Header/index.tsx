@@ -1,13 +1,13 @@
 "use client";
-import { Search, User } from "lucide-react";
+import { Search } from "lucide-react";
 import debounce from "lodash/debounce";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
-import { useState, useCallback } from "react";
+import { useState, useCallback, Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import UserMenu from "../UserMenu";
 
-const Header = () => {
+const HeaderContent = () => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -64,4 +64,12 @@ const Header = () => {
   );
 };
 
-export default Header;
+
+
+export default function Header() {
+  return (
+    <Suspense fallback={<div className="h-14 bg-white shadow" />}>
+      <HeaderContent />
+    </Suspense>
+  );
+}

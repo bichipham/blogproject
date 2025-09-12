@@ -92,11 +92,16 @@ export default function Login() {
         >
           Login
         </button>
+
         <p className="text-center text-sm mt-3 cursor-pointer">
           Don’t have an account?{" "}
           <a className="text-purple-600 font-medium hover:underline">
             Register here
           </a>
+        </p>
+        <p>
+          {" "}
+          {`Username = "emily" and password = "emilyspass" to login`}
         </p>
       </form>
     </div>

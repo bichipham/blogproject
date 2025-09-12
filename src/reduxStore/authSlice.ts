@@ -3,7 +3,7 @@ import axiosClient from "@/utils/axiosClient";
 import Cookies from "js-cookie";
 
 interface AuthState {
-  user: null | { id: string; email: string };
+  user: null | { id: string; email: string; username: string };
   accessToken: string | null;
   refreshToken: string | null;
   loading: boolean;
@@ -54,7 +54,7 @@ const authSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(login.fulfilled, (state, action: PayloadAction<{ rest: { id: string; email: string }, accessToken: string, refreshToken: string }>) => {
+      .addCase(login.fulfilled, (state, action: PayloadAction<{ rest: { id: string; email: string, username: string }, accessToken: string, refreshToken: string }>) => {
         state.loading = false;
         state.user = action.payload.rest;
         state.accessToken = action.payload.accessToken;
