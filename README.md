@@ -3,6 +3,8 @@
 A demo social feed application built with **Next.js 14 (App Router)**, **Redux Toolkit**, and **TypeScript**.  
 Supports **authentication with access token & refresh token**, and **Axios interceptors** for automatic token refresh.  
 
+👉 **Live Demo:** [https://blogproject-hazel-zeta.vercel.app/newsfeed](https://blogproject-hazel-zeta.vercel.app/newsfeed)
+
 ---
 
 ## 🚀 Features
