@@ -27,7 +27,7 @@ export const login = createAsyncThunk(
 
       Cookies.set("accessToken", accessToken);
       Cookies.set("refreshToken", refreshToken);
-      console.log("Login response data:", rest);
+      //console.log("Login response data:", rest);
       return { rest, accessToken, refreshToken };
     } catch (err: unknown) {
       return rejectWithValue(err || "Login failed");

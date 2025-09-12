@@ -4,6 +4,15 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ['lodash-es'],
   },
+  async redirects() {
+    return [
+      {
+        source: "/",   // match /old-blog/anything
+        destination: "/newsfeed", // chuyển sang /new-blog
+        permanent: true, // true = 308 redirect (SEO giữ link), false = 307
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       {

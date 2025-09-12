@@ -34,7 +34,7 @@ export default function Login() {
     }
 
     const result = await dispatch(login({ username, password }));
-    console.log("Login result:", result);
+    //console.log("Login result:", result);
     if (result.type === "auth/login/fulfilled") {
       router.push("/newsfeed");
     } else {

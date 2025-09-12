@@ -11,7 +11,7 @@ export default function NewsFeedPage() {
   const dispatch = useAppDispatch();
   const postsPayload =
     useAppSelector((state) => state?.post?.postsPayload) || [];
-  console.log("feedposts", postsPayload);
+  //console.log("feedposts", postsPayload);
   const { posts: feedposts } = postsPayload || { posts: [] };
 
   useEffect(() => {

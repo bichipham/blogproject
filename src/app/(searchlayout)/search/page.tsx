@@ -1,4 +1,4 @@
-// app/search/page.tsx
+
 import PostCard from "@/components/PostCard";
 import { PostCardProps } from "@/type/PostCard.types";
 import Image from "next/image";
@@ -10,8 +10,6 @@ export default async function SearchPage({
   searchParams: { query?: string };
 }) {
   const query = searchParams.query ?? "";
-
-  // Fetch data theo query (có thể gọi API ngoài)
   const data = query
     ? await fetch(`https://dummyjson.com/posts/search?q=${query}`).then((res) =>
         res.json()
@@ -19,7 +17,7 @@ export default async function SearchPage({
     : [];
 
   const { posts, total } = data || { posts: [], total: 0 };
-  console.log("searchdata", data);
+
   return total === 0 ? (
     <div className="flex flex-col items-center justify-center min-h-screen">
       <Image

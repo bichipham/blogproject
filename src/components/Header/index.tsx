@@ -5,6 +5,7 @@ import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { useState, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import UserMenu from "../UserMenu";
 
 const Header = () => {
   const router = useRouter();
@@ -33,7 +34,6 @@ const Header = () => {
   };
   return (
     <header className="sticky top-0 bg-white shadow flex items-center justify-between px-6 py-3 z-50">
-      {/* Logo */}
       <Link className="font-bold text-lg cursor-pointer" href={"/newsfeed"}>
         <Image
           src="https://group.beincom.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo_beincomm_icon_only.12cfcb79.webp&w=64&q=75"
@@ -45,7 +45,6 @@ const Header = () => {
         MySocial
       </Link>
 
-      {/* Search */}
       <div className="flex-1 max-w-md mx-6">
         <div className="flex items-center bg-gray-100 rounded-full px-3 py-2">
           <Search className="w-5 h-5 text-gray-500 mr-2" />
@@ -58,9 +57,8 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Profile Icon */}
       <button className="rounded-full bg-gray-200 p-2">
-        <User className="w-6 h-6 text-gray-600" />
+        <UserMenu />
       </button>
     </header>
   );
