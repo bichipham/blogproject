@@ -18,7 +18,7 @@ Supports **authentication with access token & refresh token**, and **Axios inter
   - **Axios interceptor** handles automatic refresh
 - 📄 **Pages**
   - `Login` page
-  - `Newsfeed` (list of posts with virtualization)
+  - `Newsfeed` (list of posts)
   - `Post Detail` (with comments)
   - `Search` (with debounce & no-results UI)
 - 🧪 **Testing**
@@ -122,6 +122,7 @@ test("renders login form and submits", () => {
 
 - [ ] Improve UI with Skeleton Loading
 - [ ] Add infinite scroll to Newsfeed
+- [ ] list of posts with virtualization
 - [ ] Write more tests (Post detail, Search, etc.)
 
 ---

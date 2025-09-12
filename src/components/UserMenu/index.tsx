@@ -25,8 +25,7 @@ export default function UserMenu() {
     };
   }, []);
 
-  const handleLoguyt = () => {
-    // Xử lý logout ở đây
+  const handleLogout = () => {
     dispatch({ type: "auth/logout" });
     // redirect to login page
     router.push("/login");
@@ -55,7 +54,7 @@ export default function UserMenu() {
           </div>
           {/* Logout button */}
           <div
-            onClick={handleLoguyt}
+            onClick={handleLogout}
             className="flex w-full items-center gap-3 px-4 py-3 text-gray-700 text-base hover:bg-gray-100 rounded-md cursor-pointer"
           >
             <LogOut className="w-5 h-5" />
