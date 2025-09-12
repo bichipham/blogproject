@@ -5,6 +5,7 @@ Supports **authentication with access token & refresh token**, and **Axios inter
 
 👉 **Live Demo:** [https://blogproject-hazel-zeta.vercel.app/newsfeed](https://blogproject-hazel-zeta.vercel.app/newsfeed)
 
+👉 **Fake API:** https://dummyjson.com/
 ---
 
 ## 🚀 Features
