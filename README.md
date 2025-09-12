@@ -1,36 +1,129 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📰 Next.js Social Feed App
 
-## Getting Started
+A demo social feed application built with **Next.js 14 (App Router)**, **Redux Toolkit**, and **TypeScript**.  
+Supports **authentication with access token & refresh token**, and **Axios interceptors** for automatic token refresh.  
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🚀 Features
+
+- ⚡ **Next.js 14** with App Router
+- 🎨 **Tailwind CSS** for styling
+- 🗂️ **Redux Toolkit** for state management
+- 🔐 **Authentication**
+  - Login with `accessToken` + `refreshToken`
+  - Tokens stored in **cookies**
+  - **Axios interceptor** handles automatic refresh
+- 📄 **Pages**
+  - `Login` page
+  - `Newsfeed` (list of posts with virtualization)
+  - `Post Detail` (with comments)
+  - `Search` (with debounce & no-results UI)
+- 🧪 **Testing**
+  - Unit test for `Login` form (React Testing Library + Jest)
+
+---
+
+## 📂 Project Structure
+
+```
+src/
+ ├─ app/
+ │   ├─ login/        # Login page
+ │   ├─ newsfeed/     # Newsfeed page
+ │   ├─ post/[id]/    # Post detail page
+ │   ├─ search/       # Search page
+ │   └─ layout.tsx    # Main layout
+ │
+ ├─ components/
+ │   ├─ PostCard.tsx
+ │   └─ ...
+ │
+ ├─ reduxStore/
+ │   ├─ store.ts
+ │   ├─ authSlice.ts
+ │   └─ feedSlice.ts
+ │
+ ├─ utils/
+ │   └─ axiosClient.ts  # Axios + interceptor setup
+ │
+ └─ __tests__/
+     └─ login.test.tsx  # Unit test for Login form
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🔑 Authentication Flow
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. User logs in → `accessToken` + `refreshToken` saved in cookies.
+2. Axios attaches `accessToken` to every request.
+3. If `accessToken` expires → interceptor automatically calls refresh endpoint using `refreshToken`.
+4. If refresh fails → user is redirected to `/login`.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## ⚙️ Installation
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+# Clone repo
+git clone https://github.com/bichipham/blogproject.git
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Install dependencies
+npm install
 
-## Deploy on Vercel
+# Run development server
+npm run dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Open [http://localhost:3000](http://localhost:3000).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🧪 Testing
+
+Run unit tests:
+
+```bash
+npm run test
+```
+
+Example test: **Login form**
+
+```tsx
+import { render, screen, fireEvent } from "@testing-library/react";
+import Login from "../app/login/page";
+import { Provider } from "react-redux";
+import { store } from "@/reduxStore/store";
+
+test("renders login form and submits", () => {
+  render(
+    <Provider store={store}>
+      <Login />
+    </Provider>
+  );
+
+  fireEvent.change(screen.getByPlaceholderText(/username/i), {
+    target: { value: "testuser" },
+  });
+  fireEvent.change(screen.getByPlaceholderText(/password/i), {
+    target: { value: "password" },
+  });
+  fireEvent.click(screen.getByRole("button", { name: /login/i }));
+
+  expect(screen.getByText(/loading/i)).toBeInTheDocument();
+});
+```
+
+---
+
+## 📌 Todo
+
+- [ ] Improve UI with Skeleton Loading
+- [ ] Add infinite scroll to Newsfeed
+- [ ] Write more tests (Post detail, Search, etc.)
+
+---
+
+## 📝 License
+
+MIT © 2025 Bichi Pham
