@@ -17,9 +17,13 @@ const CommentList = ({ postId }: { postId: string }) => {
   };
 
   useEffect(() => {
-    dispatch(fetchCommentsByPostId(postId))
-      .unwrap()
-      .then((data) => setLocalComments(data));
+    const fetchComments = async () => {
+      const res = await dispatch(fetchCommentsByPostId(postId));
+      if (res?.type === "comments/fetchCommentsByPostId/fulfilled") {
+        setLocalComments(res?.payload);
+      }
+    };
+    fetchComments();
   }, [dispatch, postId]);
 
   const handleAddComment = async () => {
@@ -36,7 +40,8 @@ const CommentList = ({ postId }: { postId: string }) => {
       {/* Header */}
       <h2 className="text-lg font-semibold flex items-center gap-2 text-gray-800">
         <MessageCircle className="w-5 h-5 text-blue-500" />
-        Comments <span className="text-gray-500 text-sm">({localComments?.length})</span>
+        Comments{" "}
+        <span className="text-gray-500 text-sm">({localComments?.length})</span>
       </h2>
 
       {/* Input add comment */}
@@ -76,7 +81,9 @@ const CommentList = ({ postId }: { postId: string }) => {
                 <p className="text-sm font-semibold text-gray-800">
                   {cmt?.user?.fullName}
                 </p>
-                <p className="text-gray-700 text-sm leading-snug">{cmt?.body}</p>
+                <p className="text-gray-700 text-sm leading-snug">
+                  {cmt?.body}
+                </p>
               </div>
             </div>
           ))

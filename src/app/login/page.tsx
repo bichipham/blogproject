@@ -101,7 +101,7 @@ export default function Login() {
         </p>
         <p>
           {" "}
-          {`Username = "emily" and password = "emilyspass" to login`}
+          {`Username = "emilys" and password = "emilyspass" to login`}
         </p>
       </form>
     </div>
